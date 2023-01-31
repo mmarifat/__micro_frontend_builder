@@ -34,21 +34,21 @@ npm i @module-federation/nextjs-mf webpack@5.75.0
 2. Add to next.config.js
 module.exports = {
   webpack(config, options) {
-    const { webpack, isServer } = options;
-    Object.assign(config.experiments, { topLevelAwait: true });
-      config.plugins.push(
-        new NextFederationPlugin({
-          name: 'your-project-name',
-          filename: 'static/chunks/remoteEntry.js',
-          remotes: {
-            microEmailBuilder: `microEmailBuilder@http://localhost:7100/_next/static/${isServer ? 'ssr' : 'chunks'}/remoteEntry.js`,
-          },
-          shared: {},
-        }),
-      );
-    }
-
-    return config;
+	const { isServer } = options;
+	Object.assign(config.experiments, { topLevelAwait: true });
+	config.plugins.push(
+		new NextFederationPlugin({
+		  name: 'localNewBusinessFrontend',
+		  filename: 'static/chunks/remoteEntry.js',
+		  remotes: {
+			microEmailBuilder: `microEmailBuilder@http://localhost:7100/_next/static/${ isServer ?
+				'ssr' :
+				'chunks' }/remoteEntry.js`,
+		  },
+		  shared: {},
+		}),
+	);
+	return config;
   },
 };
 

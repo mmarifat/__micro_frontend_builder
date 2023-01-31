@@ -25,6 +25,7 @@ function MyApp({ Component, pageProps }: AppProps) {
             router.events.off('routeChangeStart', () => setBackdrop(true));
             router.events.off('routeChangeComplete', () => setBackdrop(false));
         };
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     if (!hydrated) return null;
