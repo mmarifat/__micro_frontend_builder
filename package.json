@@ -1,0 +1,56 @@
+{
+    "name": "micro-frontend-email-builder",
+    "version": "1.0.0",
+    "private": true,
+    "license": "MIT",
+    "author": {
+        "name": "mmarifat<Md Minhaz Ahamed Rifat>",
+        "email": "mma.rifat66@gmail.com",
+        "url": "github.com/mmarifat"
+    },
+    "scripts": {
+        "dev": "cross-env NODE_ENV=development next dev -p 7100",
+        "build": "next build",
+        "start": "next start -p 7100",
+        "lint": "next lint",
+        "format": "prettier --write components/**/*.tsx pages/**/*.ts pages/**/*.tsx styles/**/*.scss",
+        "prepare": "husky install"
+    },
+    "dependencies": {
+        "@module-federation/nextjs-mf": "^6.0.1",
+        "antd": "^5.1.7",
+        "cross-env": "^7.0.3",
+        "next": "^12.3.4",
+        "react": "^18.2.0",
+        "react-copy-to-clipboard": "^5.1.0",
+        "react-dom": "^18.2.0",
+        "react-email-editor": "^1.6.3",
+        "react-router-dom": "^6.8.0",
+        "sass": "^1.57.1",
+        "webpack": "^5.75.0",
+        "yarn": "^1.22.19"
+    },
+    "devDependencies": {
+        "@types/node": "^18.11.18",
+        "@types/nprogress": "^0.2.0",
+        "@types/react": "^18.0.27",
+        "@types/react-copy-to-clipboard": "^5.0.4",
+        "@types/react-dom": "^18.0.10",
+        "@types/react-email-editor": "^1.5.1",
+        "@typescript-eslint/eslint-plugin": "^5.50.0",
+        "@typescript-eslint/parser": "^5.50.0",
+        "autoprefixer": "^10.4.13",
+        "eslint": "^8.33.0",
+        "eslint-config-next": "^13.1.6",
+        "eslint-config-prettier": "^8.6.0",
+        "eslint-plugin-prettier": "^4.2.1",
+        "husky": "^8.0.3",
+        "postcss": "^8.4.21",
+        "prettier": "^2.8.3",
+        "tailwindcss": "^3.2.4",
+        "typescript": "^4.9.5"
+    },
+    "peerDependencies": {
+        "webpack": "*"
+    }
+}
