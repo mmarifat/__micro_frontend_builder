@@ -52,7 +52,7 @@ const EntryPage: NextPage = (): JSX.Element => {
                 </div>
             )}
 
-            <EbBuilderComponent onReady={onReady} />
+            <EbBuilderComponent onReady={onReady} minHeight="93vh" />
 
             <Modal
                 centered

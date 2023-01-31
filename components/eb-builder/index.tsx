@@ -1,25 +1,26 @@
-import React from 'react';
-import EmailEditor from 'react-email-editor';
+import React, { CSSProperties } from 'react';
+import EmailEditor, { AppearanceConfig, ToolsConfig, UnlayerOptions } from 'react-email-editor';
 
 type Props = {
-    // editor instance is created
-    // you can load your template here;
-    // const templateJson = {};
-    // emailEditorRef.current.editor.loadDesign(templateJson);;
-    onLoad?: () => void;
-    // editor is ready
-    onReady: (ref: React.Ref<any>) => void;
+    readonly editorId?: string | undefined;
+    readonly style?: CSSProperties | undefined;
+    readonly minHeight?: number | string | undefined;
+    readonly options?: UnlayerOptions | undefined;
+    readonly tools?: ToolsConfig | undefined;
+    readonly appearance?: AppearanceConfig | undefined;
+    readonly projectId?: number | undefined;
+    readonly scriptUrl?: string | undefined;
+    /** @deprecated Use **onReady** instead */
+    onLoad?(): void;
+    onReady?(ref: React.Ref<any>): void;
 };
 
-const EbBuilderComponent: React.FC<Props> = ({ onReady, onLoad }) => {
+const EbBuilderComponent: React.FC<Props> = props => {
     const emailEditorRef = React.useRef(null);
-    const __onLoad = () => {
-        if (onLoad) onLoad();
-    };
     const __onReady = () => {
-        if (onReady) onReady(emailEditorRef.current);
+        if (props?.onReady) props?.onReady(emailEditorRef.current);
     };
-    return <EmailEditor style={{ minHeight: '92vh' }} ref={emailEditorRef} onLoad={__onLoad} onReady={__onReady} />;
+    return <EmailEditor ref={emailEditorRef} {...props} onReady={__onReady} />;
 };
 
 EbBuilderComponent.displayName = 'EbBuilderComponent';
