@@ -1,5 +1,6 @@
 import React, { CSSProperties } from 'react';
 import EmailEditor, { AppearanceConfig, ToolsConfig, UnlayerOptions } from 'react-email-editor';
+import EbTitle from '@components/shared/eb-title';
 
 type Props = {
     readonly editorId?: string | undefined;
@@ -20,7 +21,12 @@ const EbBuilderComponent: React.FC<Props> = props => {
     const __onReady = () => {
         if (props?.onReady) props?.onReady(emailEditorRef.current);
     };
-    return <EmailEditor ref={emailEditorRef} {...props} onReady={__onReady} />;
+    return (
+        <>
+            <EbTitle title="Email:Builder" />
+            <EmailEditor ref={emailEditorRef} {...props} onReady={__onReady} />;
+        </>
+    );
 };
 
 EbBuilderComponent.displayName = 'EbBuilderComponent';

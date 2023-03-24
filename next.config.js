@@ -14,6 +14,7 @@ const nextConfig = {
           filename: "static/chunks/remoteEntry.js",
           exposes: {
             "./EbBuilderComponent": "./components/eb-builder/index.tsx",
+            "./EbContactUsComponent": "./components/eb-contact-us/index.tsx",
             "./interfaces": "./library/interfaces.ts"
           },
           shared: {

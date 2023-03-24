@@ -2,7 +2,6 @@ import React from 'react';
 import '@module-federation/nextjs-mf/src/include-defaults';
 import type { AppProps } from 'next/app';
 import { useRouter } from 'next/router';
-import Head from 'next/head';
 import { ConfigProvider } from 'antd';
 import en_GB from 'antd/lib/locale/en_GB';
 import EbBackdrop from '@components/shared/eb-backdrop';
@@ -55,9 +54,6 @@ function MyApp({ Component, pageProps }: AppProps) {
                 },
             }}>
             <EbBackdrop status={backdrop} />
-            <Head>
-                <title>Email:Builder</title>
-            </Head>
             <Component {...pageProps} />
         </ConfigProvider>
     );

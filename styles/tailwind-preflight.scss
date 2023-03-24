@@ -9,3 +9,53 @@
 .google-map * {
     border-style: none;
 }
+
+@layer components {
+    .ant-modal-content-transparent {
+        .ant-modal-content {
+            background-color: transparent;
+            box-shadow: unset;
+
+            .ant-modal-body {
+                background-color: transparent;
+                box-shadow: unset;
+            }
+        }
+    }
+}
+
+.ant-input {
+    &::placeholder {
+        /* Chrome, Firefox, Opera, Safari 10.1+ */
+        color: theme('colors.black.semi');
+        opacity: 1; /* Firefox */
+        font-family: theme('fontFamily.poppins'), serif;
+    }
+    &::-webkit-input-placeholder {
+        /* WebKit, Blink, Edge */
+        color: theme('colors.black.semi');
+        font-family: theme('fontFamily.poppins'), serif;
+    }
+    &:-moz-placeholder {
+        /* Mozilla Firefox 4 to 18 */
+        color: theme('colors.black.semi');
+        opacity: 1;
+        font-family: theme('fontFamily.poppins'), serif;
+    }
+    &::-moz-placeholder {
+        /* Mozilla Firefox 19+ */
+        color: theme('colors.black.semi');
+        opacity: 1;
+        font-family: theme('fontFamily.poppins'), serif;
+    }
+    &:-ms-input-placeholder {
+        /* Internet Explorer 10-11 */
+        color: theme('colors.black.semi');
+        font-family: theme('fontFamily.poppins'), serif;
+    }
+    &::-ms-input-placeholder {
+        /* Microsoft Edge */
+        color: theme('colors.black.semi');
+        font-family: theme('fontFamily.poppins'), serif;
+    }
+}
