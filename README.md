@@ -38,7 +38,7 @@ module.exports = {
 	Object.assign(config.experiments, { topLevelAwait: true });
 	config.plugins.push(
 		new NextFederationPlugin({
-		  name: 'localNewBusinessFrontend',
+		  name: 'microFrontend',
 		  filename: 'static/chunks/remoteEntry.js',
 		  remotes: {
 			microEmailBuilder: `microEmailBuilder@http://localhost:7100/_next/static/${ isServer ?
