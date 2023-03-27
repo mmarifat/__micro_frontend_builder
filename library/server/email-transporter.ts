@@ -10,10 +10,7 @@ export class EmailTransporter {
             service: 'Outlook365',
             host: 'smtp.office365.com',
             port: '587',
-            tls: {
-                ciphers: 'SSLv3',
-                rejectUnauthorized: false,
-            },
+            tls: { ciphers: 'SSLv3' },
             auth: { user, pass },
         } as any);
     }
