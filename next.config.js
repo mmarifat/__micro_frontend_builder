@@ -10,12 +10,11 @@ const nextConfig = {
   webpack(config) {
     config.plugins.push(
         new NextFederationPlugin({
-          name: 'microEmailBuilder',
+          name: 'microContentBuilder',
           filename: "static/chunks/remoteEntry.js",
           exposes: {
             "./EbBuilderComponent": "./components/eb-builder/index.tsx",
-            "./EbContactUsComponent": "./components/eb-contact-us/index.tsx",
-            "./interfaces": "./library/interfaces.ts"
+            "./EbContactUsComponent": "./components/eb-contact-us/index.tsx"
           },
           shared: {
             // whatever else

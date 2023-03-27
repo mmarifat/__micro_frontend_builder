@@ -41,7 +41,7 @@ module.exports = {
 		  name: 'microFrontend',
 		  filename: 'static/chunks/remoteEntry.js',
 		  remotes: {
-			microEmailBuilder: `microEmailBuilder@http://localhost:7100/_next/static/${ isServer ?
+			microContentBuilder: `microContentBuilder@http://localhost:7100/_next/static/${ isServer ?
 				'ssr' :
 				'chunks' }/remoteEntry.js`,
 		  },
@@ -53,5 +53,5 @@ module.exports = {
 };
 
 3. Import to the component
-const EbBuilderComponent = dynamic(() => import('microEmailBuilder/EbBuilderComponent'), {ssr: false})
+const EbBuilderComponent = dynamic(() => import('microContentBuilder/EbBuilderComponent'), {ssr: false})
 ```

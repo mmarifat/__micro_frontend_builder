@@ -1,6 +1,6 @@
 import React from 'react';
-import EbTitle from '@components/shared/eb-title';
 import { Button } from 'antd';
+import EbTitle from '@components/shared/eb-title';
 import EbMessageAlert from '@components/shared/eb-message-alert';
 
 type Props = {
