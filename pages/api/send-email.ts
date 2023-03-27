@@ -20,7 +20,7 @@ export const sendEmailHelper = async (key: string, to: string, subject: string, 
     try {
         return transporter
             .sendMail({
-                from,
+                from: `${sender} <${from}>`,
                 sender,
                 to,
                 subject,
