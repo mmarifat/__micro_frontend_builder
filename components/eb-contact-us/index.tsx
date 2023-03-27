@@ -42,7 +42,7 @@ const EbContactUsComponent: React.FC<Props> = props => {
         })
             .then(async res => {
                 const response = await res.json();
-                EbMessageAlert(response?.message, response?.status === 200 ? 'success' : 'error');
+                EbMessageAlert(response?.message || response?.errorMessage || 'Server Error', response?.status === 200 ? 'success' : 'error');
                 if (response?.status === 200) {
                     setState({
                         email: '',

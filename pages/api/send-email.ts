@@ -46,6 +46,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
     if (!key || !to || !subject || !text) {
         res.status(400).json({ status: 400, message: 'Wrong project configuration' });
     }
-    const { status, message } = await sendEmailHelper(key, to, subject, text);
-    res.status(status).json({ status, message });
+    sendEmailHelper(key, to, subject, text);
+    // const { status, message } = sendEmailHelper(key, to, subject, text);
+    res.status(200).json({ status: 200, message: 'Thank you for contacting us!' });
 }
