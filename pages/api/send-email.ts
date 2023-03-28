@@ -17,25 +17,21 @@ export const sendEmailHelper = async (key: string, to: string, subject: string, 
         return { status: 400, message: 'Wrong project configuration' };
     }
     const { transporter } = new EmailTransporter(user, pass);
-    try {
-        return transporter
-            .sendMail({
-                from: `${sender} <${from}>`,
-                sender,
-                to,
-                subject,
-                text,
-                html: text,
-            })
-            .then(() => {
-                return { status: 200, message: 'Thank you for contacting us!' };
-            })
-            .catch(() => {
-                return { status: 400, message: 'Something went wrong! Please contact admin.' };
-            });
-    } catch (e) {
-        return { status: 400, message: 'Something went wrong! Please contact admin.' };
-    }
+    return transporter
+        .sendMail({
+            from: `${sender} <${from}>`,
+            sender,
+            to,
+            subject,
+            text,
+            html: text,
+        })
+        .then(() => {
+            return { status: 200, message: 'Thank you for contacting us!' };
+        })
+        .catch(() => {
+            return { status: 400, message: 'Something went wrong! Please contact admin.' };
+        });
 };
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse<Data>) {
@@ -46,7 +42,6 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
     if (!key || !to || !subject || !text) {
         res.status(400).json({ status: 400, message: 'Wrong project configuration' });
     }
-    sendEmailHelper(key, to, subject, text);
-    // const { status, message } = sendEmailHelper(key, to, subject, text);
-    res.status(200).json({ status: 200, message: 'Thank you for contacting us!' });
+    const { status, message } = await sendEmailHelper(key, to, subject, text);
+    res.status(status).json({ status, message });
 }

@@ -50,4 +50,4 @@ const LicenseSchema = new mongoose.Schema(
 );
 
 LicenseSchema.index({ key: 1 }, { unique: true });
-export const License: typeof Model = mongoose.models.licenses || mongoose.model('licenses', LicenseSchema);
+export const License: typeof Model = mongoose.models['emailer_licenses'] || mongoose.model('emailer_licenses', LicenseSchema);
