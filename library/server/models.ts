@@ -14,11 +14,27 @@ const LicenseSchema = new mongoose.Schema(
         },
         user: {
             type: String,
-            required: [true, 'Please specify user for node mailer.'],
+            required: false,
         },
         pass: {
             type: String,
-            required: [true, 'Please specify password for node mailer.'],
+            required: false,
+        },
+        oAuth2EmailId: {
+            type: String,
+            required: false,
+        },
+        oAuth2ClientId: {
+            type: String,
+            required: false,
+        },
+        oAuth2ClientSecret: {
+            type: String,
+            required: false,
+        },
+        oAuth2RefreshToken: {
+            type: String,
+            required: false,
         },
         from: {
             type: String,

@@ -12,15 +12,23 @@ type Data = {
 export const sendEmailHelper = async (key: string, to: string, subject: string, text: string) => {
     await MongoConnect();
     const licenseInfo = await getLicenseInfo(key);
-    const { user, pass, from, sender } = licenseInfo || {};
-    if (!user || !pass || !from || !sender) {
+    if (licenseInfo.type === 'microsoft' && (!licenseInfo.user || !licenseInfo.pass || !licenseInfo.from || !licenseInfo.sender)) {
+        return { status: 400, message: 'Wrong project configuration' };
+    } else if (
+        !licenseInfo.oAuth2EmailId ||
+        !licenseInfo.oAuth2ClientId ||
+        !licenseInfo.oAuth2ClientSecret ||
+        !licenseInfo.oAuth2RefreshToken ||
+        !licenseInfo.from ||
+        !licenseInfo.sender
+    ) {
         return { status: 400, message: 'Wrong project configuration' };
     }
     const transporter = await EmailTransporter(licenseInfo);
     return transporter
         .sendMail({
-            from: `${sender} <${from}>`,
-            sender,
+            from: `${licenseInfo.sender} <${licenseInfo.from}>`,
+            sender: licenseInfo.sender,
             to,
             subject,
             text,
