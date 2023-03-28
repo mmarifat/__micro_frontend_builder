@@ -20,6 +20,7 @@
         "@module-federation/nextjs-mf": "^6.0.1",
         "antd": "^5.1.7",
         "cross-env": "^7.0.3",
+        "googleapis": "^114.0.0",
         "mongoose": "^7.0.2",
         "next": "^12.3.4",
         "nodemailer": "^6.8.0",

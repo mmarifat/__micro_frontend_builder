@@ -1,8 +1,8 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import type { NextApiRequest, NextApiResponse } from 'next';
-import { EmailTransporter } from '@library/server/email-transporter';
 import { getLicenseInfo } from './get-license-info';
 import MongoConnect from '@library/server/mongo';
+import EmailTransporter from '@library/server/email-transporter';
 
 type Data = {
     message: string;
@@ -11,12 +11,12 @@ type Data = {
 
 export const sendEmailHelper = async (key: string, to: string, subject: string, text: string) => {
     await MongoConnect();
-    const licenseInfo = await getLicenseInfo(key, ['user', 'pass', 'from', 'sender']);
+    const licenseInfo = await getLicenseInfo(key);
     const { user, pass, from, sender } = licenseInfo || {};
     if (!user || !pass || !from || !sender) {
         return { status: 400, message: 'Wrong project configuration' };
     }
-    const { transporter } = new EmailTransporter(user, pass);
+    const transporter = await EmailTransporter(licenseInfo);
     return transporter
         .sendMail({
             from: `${sender} <${from}>`,
