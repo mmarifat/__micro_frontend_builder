@@ -9,6 +9,9 @@ This is micro-frontend driven Email Builder Application
 4. sass
 5. tailwindcss
 6. typescript
+7. nodemailer
+8. google 0Auth
+9. MicrosoftMailer
 ```
 
 ## Getting Started
