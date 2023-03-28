@@ -15,13 +15,15 @@ export const sendEmailHelper = async (key: string, to: string, subject: string, 
     const licenseInfo = await getLicenseInfo(key);
     if (licenseInfo.type === 'microsoft' && (!licenseInfo.user || !licenseInfo.pass || !licenseInfo.from || !licenseInfo.sender)) {
         return { status: 400, message: 'Wrong project configuration' };
-    } else if (
-        !licenseInfo.oAuth2EmailId ||
-        !licenseInfo.oAuth2ClientId ||
-        !licenseInfo.oAuth2ClientSecret ||
-        !licenseInfo.oAuth2RefreshToken ||
-        !licenseInfo.from ||
-        !licenseInfo.sender
+    }
+    if (
+        licenseInfo.type === 'gmail' &&
+        (!licenseInfo.oAuth2EmailId ||
+            !licenseInfo.oAuth2ClientId ||
+            !licenseInfo.oAuth2ClientSecret ||
+            !licenseInfo.oAuth2RefreshToken ||
+            !licenseInfo.from ||
+            !licenseInfo.sender)
     ) {
         return { status: 400, message: 'Wrong project configuration' };
     }
