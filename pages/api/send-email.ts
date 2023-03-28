@@ -29,7 +29,8 @@ export const sendEmailHelper = async (key: string, to: string, subject: string, 
         .then(() => {
             return { status: 200, message: 'Thank you for contacting us!' };
         })
-        .catch(() => {
+        .catch(e => {
+            console.log(new Date().toISOString(), 'emailer failure reason', e);
             return { status: 400, message: 'Something went wrong! Please contact admin.' };
         });
 };
