@@ -18,7 +18,7 @@ type Data = {
 
 export const getLicenseInfo = async (key: string, fields: string[] = []) => {
     await MongoConnect();
-    return License.findOne({ key }, fields.join(' ')).lean();
+    return License.findOne({ key }, fields.join(' ')).lean() as any;
 };
 export default async function handler(req: NextApiRequest, res: NextApiResponse<Data>) {
     if (req.method !== 'GET') {
@@ -26,5 +26,9 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
     }
     const { key } = req.query;
     const licenseInfo = await getLicenseInfo(key as string);
+    if (!licenseInfo) {
+        res.status(400).json({ status: 400, message: 'No license info found' });
+        return;
+    }
     res.status(200).json({ status: 200, message: 'License info fetched successfully', data: licenseInfo });
 }
