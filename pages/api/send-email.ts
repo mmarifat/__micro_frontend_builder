@@ -11,7 +11,7 @@ type Data = {
     status: number;
 };
 
-export const sendEmailHelper = async (key: string, to: string, subject: string, text: string, attachments: Array<Attachment>) => {
+export const sendEmailHelper = async (key: string, to: string, subject: string, text: string, attachments: Array<Attachment> = []) => {
     await MongoConnect();
     const licenseInfo = await getLicenseInfo(key);
     if (!licenseInfo) return { status: 400, message: 'Wrong project configuration' };
@@ -38,7 +38,7 @@ export const sendEmailHelper = async (key: string, to: string, subject: string, 
             subject,
             text,
             html: text,
-            attachments: attachments.map(a => ({
+            attachments: (attachments?.length ? attachments : [])?.map(a => ({
                 ...a,
                 content: typeof a.content === 'string' ? Buffer.from(a?.content?.split('base64,')[1], 'base64') : a.content,
             })),
